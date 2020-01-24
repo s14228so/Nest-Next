@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Post } from './../posts/posts.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -7,4 +8,7 @@ export class User {
 
   @Column({ length: 16 })
   screenName: string;
+
+  @OneToMany(type => Post, post => post.user)
+  posts: Post[];
 }

@@ -1,11 +1,12 @@
+import { Post } from './posts/posts.entity';
 import { AppService } from './app.service';
-import { UsersController } from './users/users.controller';
-import { AppController } from './app.controller';
+
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersService } from './users/users.service';
+import { } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { User } from './users/users.entity';
+import { PostsModule } from './posts/posts.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -15,12 +16,12 @@ import { User } from './users/users.entity';
       username: 'root',
       password: 'password',
       database: 'nestday7',
-      entities: [User],
+      entities: [User, Post],
       synchronize: true,
     }),
     UsersModule,
+    PostsModule,
   ],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+  providers: [AppService],
 })
 export class AppModule { }

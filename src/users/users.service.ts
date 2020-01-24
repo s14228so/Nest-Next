@@ -10,14 +10,19 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) { }
 
+  async findAllUsers(): Promise<User[] | undefined> {
+    const user = await this.userRepository.find({ relations: ["posts"] });
+    return user
+  }
+
 
   async findUserByScreenName(screenName: string): Promise<User | undefined> {
-    const user = await this.userRepository.findOne({ where: { screenName } });
+    const user = await this.userRepository.findOne({ where: { screenName }, relations: ["posts"] });
     return user
   }
 
   findUserByID(id: number): Promise<User> {
-    const user = this.userRepository.findOne({ where: { id } });
+    const user = this.userRepository.findOne({ where: { id }, relations: ["posts"] });
     return user
   }
 

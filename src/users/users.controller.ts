@@ -15,7 +15,11 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-
+  @Get()
+  getAllUsers() {
+    const users = this.usersService.findAllUsers()
+    return users
+  }
   @Get(":id")
   getUsers(@Param("id") id) {
     const user = this.usersService.findUserByID(id)
