@@ -32,7 +32,7 @@ export class UsersController {
     return user
   }
 
-  @Get()
+  @Post("login")
   login(@Body() loginUserDTO: LoginUserDTO) {
     const user = this.usersService.loginUserByEmail(loginUserDTO)
     return user

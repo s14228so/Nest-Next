@@ -32,8 +32,9 @@ export class UsersService {
     return user
   }
 
-  loginUserByEmail(loginUserDTO: LoginUserDTO) {
-    firebase
+  async loginUserByEmail(loginUserDTO: LoginUserDTO) {
+    const { user } = await firebase.auth().signInWithEmailAndPassword(loginUserDTO.email, loginUserDTO.password)
+    return user
   }
 
   async register(userData: Partial<User>): Promise<void> {
