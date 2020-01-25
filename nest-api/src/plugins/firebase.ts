@@ -1,5 +1,8 @@
 import firebase from 'firebase';
-console.log("API:", process.env.API_KEY)
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 const config = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
