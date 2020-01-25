@@ -7,7 +7,13 @@ export class User {
   id: number;
 
   @Column({ length: 16 })
-  screenName: string;
+  name: string;
+
+  @Column({ length: 16 })
+  email: string;
+
+  @Column({ length: 16 })
+  uid: string;
 
   @OneToMany(type => Post, post => post.user)
   posts: Post[];

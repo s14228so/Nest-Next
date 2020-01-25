@@ -1,8 +1,9 @@
 export class CreateUserDTO {
-  screenName: string;
+  email: string
+  name: string;
 }
 
-// tslint:disable-next-line:max-classes-per-file
 export class LoginUserDTO {
-  screenName: string;
+  email: string
+  password: string
 }

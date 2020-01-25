@@ -7,8 +7,9 @@ import {
   HttpException,
   Get,
   Param,
+  Query
 } from '@nestjs/common';
-import { CreateUserDTO } from './users.dto';
+import { CreateUserDTO, LoginUserDTO } from './users.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -16,13 +17,24 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Get()
-  getAllUsers() {
-    const users = this.usersService.findAllUsers()
-    return users
+  getAllUsers(@Query("uid") uid) {
+    if (uid) {
+      const user = this.usersService.findUserByUID(uid)
+      return user
+    } else {
+      const users = this.usersService.findAllUsers()
+      return users
+    }
   }
   @Get(":id")
   getUsers(@Param("id") id) {
     const user = this.usersService.findUserByID(id)
+    return user
+  }
+
+  @Get()
+  login(@Body() loginUserDTO: LoginUserDTO) {
+    const user = this.usersService.loginUserByEmail(loginUserDTO)
     return user
   }
 

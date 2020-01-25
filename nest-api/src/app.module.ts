@@ -1,14 +1,17 @@
+import { AppController } from './app.controller';
 import { Post } from './posts/posts.entity';
 import { AppService } from './app.service';
-
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { User } from './users/users.entity';
 import { PostsModule } from './posts/posts.module';
+
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -22,6 +25,8 @@ import { PostsModule } from './posts/posts.module';
     UsersModule,
     PostsModule,
   ],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule { }
+
