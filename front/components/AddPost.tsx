@@ -26,6 +26,7 @@ export default function AddPost() {
   const dispatch = useDispatch()
 
   const handleSubmit = async () => {
+    setPost("")
     const data = {
       userId: user.id,
       body: post
