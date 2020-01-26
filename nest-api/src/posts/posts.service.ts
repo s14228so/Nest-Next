@@ -1,3 +1,4 @@
+import { CreatePostData } from './posts.dto';
 import { Post } from './posts.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,4 +15,12 @@ export class PostsService {
     const posts = await this.postRepository.find({ relations: ["user"] })
     return posts
   }
+
+  async insertPost(postData: Partial<CreatePostData>): Promise<void> {
+    await this.postRepository.insert({
+      ...postData
+    });
+    return
+  }
+
 }

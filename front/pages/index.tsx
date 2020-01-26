@@ -38,7 +38,8 @@ const Index: NextPage = () => {
     <Wrapper>
       <p>{user.uid ? user.uid : "ユーザーいないよ"}</p>
       <Title>Welcome!</Title>
-      <PostIndex posts={user.posts}></PostIndex>
+      {user.posts && (<PostIndex posts={user.posts}></PostIndex>)}
+
     </Wrapper>
     <style global jsx>{`
       *{

@@ -48,9 +48,6 @@ export class UsersService {
   }
 
   async register(userData: Partial<CreateUserDTO>): Promise<void> {
-    // if (await this.findUserByUID(userData.uid)) {
-    //   return Promise.reject(new Error('User is already taken.'));
-    // }
     const { user } = await firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
     const newUser: Partial<User> = {
       name: userData.name,

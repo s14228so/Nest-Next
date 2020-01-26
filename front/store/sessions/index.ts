@@ -7,7 +7,6 @@ export interface State {
 }
 
 export function initialState(injects?: State): State {
-  console.log(injects)
   return {
     uid: ""
   }
@@ -20,8 +19,6 @@ interface SessionAction {
 }
 
 export const reducer: Reducer<State, SessionAction> = (state = initialState(), action: SessionAction): State => {
-  console.log(action.payload)
-
   switch (action.type) {
     case SessionActionType.SETUSER:
       return action.payload

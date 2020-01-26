@@ -6,13 +6,11 @@ import { auth } from "../../plugins/firebase"
 import { Dispatch, ActionCreator } from 'redux';
 import { ThunkAction } from "redux-thunk";
 
-export const setUser = (user: firebase.User) => {
-  console.log({ uid: user.uid })
+export const setUser = (user: User) => {
   return {
     type: SessionActionType.SETUSER,
-    payload: { uid: user.uid } as User
+    payload: user
   }
-
 }
 
 
@@ -29,7 +27,10 @@ export const login: ActionCreator<
     auth.signInWithEmailAndPassword(email, password)
       .then(user => {
         if (user.user) {
-          dispatch(setUser(user.user))
+          axios.get(`/v1/users?uid=${user.user.uid}`).then(res => {
+            console.log("これ:", res.data)
+            dispatch(setUser(res.data))
+          })
         }
       })
       .catch(error => {
@@ -47,6 +48,7 @@ export const authCheck: ActionCreator<
     auth.onAuthStateChanged((user) => {
       if (user) {
         axios.get(`/v1/users?uid=${user.uid}`).then(res => {
+          console.log("これ:", res.data)
           dispatch(setUser(res.data))
         })
       } else {
@@ -64,7 +66,10 @@ export const signup: ActionCreator<
   return (dispatch: Dispatch) => {
     auth.createUserWithEmailAndPassword(email, password).then(user => {
       if (user.user) {
-        dispatch(setUser(user.user))
+        axios.get(`/v1/users?uid=${user.user.uid}`).then(res => {
+          console.log("これ:", res.data)
+          dispatch(setUser(res.data))
+        })
       }
     })
   }
