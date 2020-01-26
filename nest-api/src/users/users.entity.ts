@@ -12,7 +12,7 @@ export class User {
   @Column({ length: 16 })
   email: string;
 
-  @Column({ length: 16 })
+  @Column({ length: 256 })
   uid: string;
 
   @OneToMany(type => Post, post => post.user)

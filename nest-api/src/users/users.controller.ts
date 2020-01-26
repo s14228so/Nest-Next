@@ -41,13 +41,14 @@ export class UsersController {
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   async createUser(@Body() createUserDTO: CreateUserDTO) {
+    console.log("コタ")
     try {
       await this.usersService.register(createUserDTO);
-    } catch (e) {
+    } catch (error) {
       throw new HttpException(
         {
           status: HttpStatus.INTERNAL_SERVER_ERROR,
-          error: 'Internal server error.',
+          error
         },
         500,
       );

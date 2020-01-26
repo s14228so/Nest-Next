@@ -1,4 +1,4 @@
-import { LoginUserDTO } from './users.dto';
+import { LoginUserDTO, CreateUserDTO } from './users.dto';
 import { Injectable } from '@nestjs/common';
 import { User } from './users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,6 +16,16 @@ export class UsersService {
     const user = await this.userRepository.find({ relations: ["posts"] });
     return user
   }
+
+  authCheck() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log("authStateChanged:", user)
+        return user
+      }
+    })
+  }
+
 
 
   async findUserByScreenName(screenName: string): Promise<User | undefined> {
@@ -37,12 +47,18 @@ export class UsersService {
     return user
   }
 
-  async register(userData: Partial<User>): Promise<void> {
-    if (await this.findUserByUID(userData.name)) {
-      return Promise.reject(new Error('User is already taken.'));
+  async register(userData: Partial<CreateUserDTO>): Promise<void> {
+    // if (await this.findUserByUID(userData.uid)) {
+    //   return Promise.reject(new Error('User is already taken.'));
+    // }
+    const { user } = await firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
+    const newUser: Partial<User> = {
+      name: userData.name,
+      uid: user.uid,
+      email: user.email
     }
     await this.userRepository.insert({
-      ...userData
+      ...newUser
     });
     return;
   }
