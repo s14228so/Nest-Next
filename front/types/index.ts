@@ -1,37 +1,13 @@
-export interface Artist {
+export interface Post {
     id: number
-    name: string
-    introduction: string
-    songs: Song[]
-    image: Image,
+    body: string
+    user: User
 }
-
-
-export interface Image {
-    url: string
-    byte_size: number
-    name: string
-}
-
-export interface Vote {
-    user_id: number,
-    song_id: number
-}
-
-export interface Song {
-    id: number
-    name: string
-    artist: Artist
-    votes_count: number
-    lyrics: string
-    isVisible: boolean
-    video_url: string
-    votes: Vote[]
-}
-
 
 export interface User {
-    uid?: string
+    uid: string
+    name: string
+    posts: Post[]
 }
 
 export interface Action {

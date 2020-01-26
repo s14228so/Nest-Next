@@ -2,9 +2,12 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components'
 import { NextPage } from "next";
-
 import { State } from "../store"
+import PostIndex from "../components/PostList"
+import axios from '../plugins/axios';
+import { Post } from '../types';
 import { authCheck } from '../store/sessions/actions';
+
 
 const Title = styled.h1`
   color: grey;
@@ -17,7 +20,7 @@ export const Wrapper = styled.div`
 `
 
 // interface IProps {
-//   artists: Artist[]
+//   posts: Post[]
 // }
 const loginUser = (state: State) => state.user
 
@@ -28,7 +31,6 @@ const Index: NextPage = () => {
   useEffect(() => {
     dispatch(authCheck())
     return () => {
-
     };
   }, [])
   const user = useSelector(loginUser)
@@ -36,6 +38,7 @@ const Index: NextPage = () => {
     <Wrapper>
       <p>{user.uid ? user.uid : "ユーザーいないよ"}</p>
       <Title>Welcome!</Title>
+      <PostIndex posts={user.posts}></PostIndex>
     </Wrapper>
     <style global jsx>{`
       *{

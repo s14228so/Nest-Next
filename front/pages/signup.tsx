@@ -1,54 +1,68 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import styled from 'styled-components'
+import React, { useState } from 'react';
 import { NextPage } from "next";
+import { useDispatch } from "react-redux"
 
-import { State } from "../store"
-import { authCheck } from '../store/sessions/actions';
-
-const Title = styled.h1`
-  color: grey;
-  font-size: 24px;
-`
-
-export const Wrapper = styled.div`
-  margin: 20px auto;
-  width: 80%;
-`
-
-// interface IProps {
-//   artists: Artist[]
-// }
-const loginUser = (state: State) => state.user
-
+import { Paper, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Face, Fingerprint } from '@material-ui/icons'
+import { signup } from '../store/sessions/actions';
 
 const SignUpPage: NextPage = () => {
-  const dispatch = useDispatch()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(authCheck())
-    return () => {
-
-    };
-  }, [])
-  const user = useSelector(loginUser)
-  return <div>
-    <Wrapper>
-      <p>{user.uid ? user.uid : "ユーザーいないよ"}</p>
-      <Title>SignUp Page!</Title>
-    </Wrapper>
-    <style global jsx>{`
-      *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      `}</style>
-  </div>;
+  return (
+    <Paper style={styles.container}>
+      <div>
+        <h2>Sign Up</h2>
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item>
+            <Face />
+          </Grid>
+          <Grid item md={true} sm={true} xs={true}>
+            <TextField id="email" label="Email" value={email} type="email" fullWidth autoFocus required onChange={(e) => {
+              setEmail(e.target.value)
+            }} />
+          </Grid>
+        </Grid>
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item>
+            <Fingerprint />
+          </Grid>
+          <Grid item md={true} sm={true} xs={true}>
+            <TextField id="password" label="Password" value={password} type="password" fullWidth required onChange={(e) => {
+              setPassword(e.target.value)
+            }} />
+          </Grid>
+        </Grid>
+        <Grid container alignItems="center" justify="space-between">
+          <Grid item>
+            <FormControlLabel control={
+              <Checkbox
+                color="primary"
+              />
+            } label="Remember me" />
+          </Grid>
+          <Grid item>
+            <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
+          </Grid>
+        </Grid>
+        <Grid container justify="center" style={{ marginTop: '10px' }}>
+          <Button variant="outlined" color="primary" style={{ textTransform: "none" }} onClick={() => {
+            dispatch(signup(email, password))
+          }}>SignUp</Button>
+        </Grid>
+      </div>
+    </Paper>
+  );
 }
-// async必須。
-SignUpPage.getInitialProps = async () => {
 
+const styles = {
+  container: {
+    width: "50%",
+    margin: "30px auto",
+    padding: "20px"
+  }
 }
-export default SignUpPage;
 
+export default SignUpPage

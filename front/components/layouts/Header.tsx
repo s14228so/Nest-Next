@@ -39,7 +39,7 @@ export default function ButtonAppBar() {
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
                             <Link href="/">
-                                <a style={{ color: "#000" }}> Visual</a>
+                                <a style={{ color: "#000" }}> Home</a>
                             </Link>
                         </Typography>
                     </Toolbar>

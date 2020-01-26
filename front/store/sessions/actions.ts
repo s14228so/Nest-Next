@@ -1,3 +1,4 @@
+import axios from '../../plugins/axios';
 import { User } from './../../types/index';
 
 import { SessionActionType } from "./types"
@@ -21,12 +22,11 @@ interface PromiseAction {
   amount?: number
 }
 
-
 export const login: ActionCreator<
   ThunkAction<void, typeof SessionActionType, null, PromiseAction>
-> = () => {
+> = (email, password) => {
   return (dispatch: Dispatch) => {
-    auth.signInAnonymously()
+    auth.signInWithEmailAndPassword(email, password)
       .then(user => {
         if (user.user) {
           dispatch(setUser(user.user))
@@ -46,13 +46,29 @@ export const authCheck: ActionCreator<
   return (dispatch: Dispatch) => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        dispatch(setUser(user))
+        axios.get(`/v1/users?uid=${user.uid}`).then(res => {
+          dispatch(setUser(res.data))
+        })
       } else {
       }
     });
   }
 }
 
+
+
+
+export const signup: ActionCreator<
+  ThunkAction<void, typeof SessionActionType, null, PromiseAction>
+> = ({ email, password }) => {
+  return (dispatch: Dispatch) => {
+    auth.createUserWithEmailAndPassword(email, password).then(user => {
+      if (user.user) {
+        dispatch(setUser(user.user))
+      }
+    })
+  }
+}
 
 
 
