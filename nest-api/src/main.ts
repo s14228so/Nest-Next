@@ -8,6 +8,6 @@ async function bootstrap() {
     origin: '*',
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
   });
-  await app.listen(3000);
+  await app.listen(8080);
 }
 bootstrap();

@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
 const loginUser = (state: State) => state.user
 
 
-const Index: NextPage = () => {
+const SignUpPage: NextPage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Index: NextPage = () => {
   return <div>
     <Wrapper>
       <p>{user.uid ? user.uid : "ユーザーいないよ"}</p>
-      <Title>Welcome!</Title>
+      <Title>SignUp Page!</Title>
     </Wrapper>
     <style global jsx>{`
       *{
@@ -47,8 +47,8 @@ const Index: NextPage = () => {
   </div>;
 }
 // async必須。
-Index.getInitialProps = async () => {
+SignUpPage.getInitialProps = async () => {
 
 }
-export default Index;
+export default SignUpPage;
 
