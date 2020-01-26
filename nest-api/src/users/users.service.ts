@@ -57,6 +57,7 @@ export class UsersService {
     await this.userRepository.insert({
       ...newUser
     });
+
     return;
   }
 }

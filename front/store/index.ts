@@ -17,5 +17,5 @@ export function initStore(state = initialState()) {
 
 export interface State {
   user: User,
-  error: MessageState
+  message: MessageState
 }

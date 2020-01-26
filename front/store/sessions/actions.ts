@@ -1,5 +1,5 @@
 import axios from '../../plugins/axios';
-import { User } from './../../types/index';
+import { User } from './../../types';
 
 import { SessionActionType } from "./types"
 import { auth } from "../../plugins/firebase"
@@ -54,6 +54,13 @@ export const authCheck: ActionCreator<
       } else {
       }
     });
+  }
+}
+
+export const postData = (user: User) => {
+  return {
+    type: SessionActionType.POSTDATA,
+    payload: user
   }
 }
 

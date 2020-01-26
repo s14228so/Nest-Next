@@ -1,14 +1,16 @@
-import { User } from './../../types/index';
+import { User, Post } from './../../types/index';
 import { SessionActionType } from './types';
 import { Reducer } from "redux"
 
 export interface State {
   uid?: string
+  posts: Post[]
 }
 
 export function initialState(injects?: State): State {
   return {
-    uid: ""
+    uid: "",
+    posts: []
   }
 }
 
@@ -24,6 +26,8 @@ export const reducer: Reducer<State, SessionAction> = (state = initialState(), a
       return action.payload
     case SessionActionType.LOGOUT:
       return state
+    case SessionActionType.POSTDATA:
+      return action.payload
     default:
       return state
   }

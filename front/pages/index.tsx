@@ -4,10 +4,8 @@ import styled from 'styled-components'
 import { NextPage } from "next";
 import { State } from "../store"
 import PostIndex from "../components/PostList"
-import axios from '../plugins/axios';
-import { Post } from '../types';
 import { authCheck } from '../store/sessions/actions';
-
+import AddPost from "../components/AddPost"
 
 const Title = styled.h1`
   color: grey;
@@ -38,6 +36,7 @@ const Index: NextPage = () => {
     <Wrapper>
       <p>{user.uid ? user.uid : "ユーザーいないよ"}</p>
       <Title>Welcome!</Title>
+      <AddPost></AddPost>
       {user.posts && (<PostIndex posts={user.posts}></PostIndex>)}
 
     </Wrapper>

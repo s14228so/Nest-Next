@@ -2,14 +2,15 @@ import React from "react"
 import { Post } from "../types"
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useSelector } from "react-redux"
+import { State } from "../store";
 
 const useStyles = makeStyles({
     card: {
         minWidth: 275,
+        marginTop: 20
     },
     bullet: {
         display: 'inline-block',
@@ -29,9 +30,12 @@ interface IProps {
 }
 
 
+const loginUser = (state: State) => state.user
+
 
 const PostList: React.FC<IProps> = ({ posts }) => {
     const classes = useStyles();
+    const user = useSelector(loginUser)
     return (
         <ul>
             {posts.map((post: Post, i: number) => {
@@ -39,13 +43,12 @@ const PostList: React.FC<IProps> = ({ posts }) => {
                     <Card className={classes.card} key={i}>
                         <CardContent>
                             <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                {post.user.name}
+                                {user.name}
                             </Typography>
                             <Typography variant="h5" component="h2">
                                 {post.body}
                             </Typography>
                         </CardContent>
-
                     </Card>
                 )
             })}

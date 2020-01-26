@@ -1,10 +1,12 @@
 export interface Post {
-    id: number
+    id?: number
     body: string
-    user: User
+    user?: User
+    userId?: number
 }
 
 export interface User {
+    id: number,
     uid: string
     name: string
     posts: Post[]

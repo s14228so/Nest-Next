@@ -17,8 +17,10 @@ export class PostsService {
   }
 
   async insertPost(postData: Partial<CreatePostData>): Promise<void> {
+    const user = await this.postRepository.findOne({ where: { id: postData.userId } })
     await this.postRepository.insert({
-      ...postData
+      ...postData,
+      user
     });
     return
   }

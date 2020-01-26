@@ -1,5 +1,5 @@
 export class CreatePostData {
-  uid: string
   body: string;
+  userId: number
 }
 
