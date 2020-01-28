@@ -34,8 +34,7 @@ const Index: NextPage = () => {
   const user = useSelector(loginUser)
   return <div>
     <Wrapper>
-      <p>{user.uid ? user.uid : "ユーザーいないよ"}</p>
-      <Title>Welcome!</Title>
+      <Title>TodoList</Title>
       <AddPost></AddPost>
       {user.posts && (<PostIndex posts={user.posts}></PostIndex>)}
 

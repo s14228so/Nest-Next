@@ -35,7 +35,6 @@ export default function ButtonAppBar() {
         <div className={classes.root}>
             <ThemeProvider theme={theme}>
                 <AppBar position="static" color="primary">
-
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
                             <Link href="/">

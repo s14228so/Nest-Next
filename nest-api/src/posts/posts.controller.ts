@@ -1,6 +1,6 @@
 import { CreatePostData } from './posts.dto';
 import { PostsService } from './posts.service';
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
 
 @Controller('posts')
 export class PostsController {
@@ -15,5 +15,11 @@ export class PostsController {
   createPost(@Body() postData: CreatePostData) {
     const newPost = this.postsService.insertPost(postData)
     return newPost
+  }
+
+  @Delete(":id")
+  deletePost(@Param("id") id): void {
+    this.postsService.deletePost(id)
+    return
   }
 }

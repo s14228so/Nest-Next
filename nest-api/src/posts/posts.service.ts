@@ -30,4 +30,12 @@ export class PostsService {
     return
   }
 
+
+  async deletePost(id): Promise<void> {
+    console.log(id)
+    const post = await this.postRepository.findOne({ id })
+    await this.postRepository.remove(post)
+    return
+  }
+
 }

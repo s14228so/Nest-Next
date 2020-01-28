@@ -1,5 +1,5 @@
 export interface Post {
-    id?: number
+    id: number
     body: string
     user?: User
     userId?: number

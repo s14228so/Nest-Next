@@ -12,8 +12,17 @@ const useStyles = makeStyles((theme: Theme) =>
       '& > *': {
         margin: theme.spacing(1),
         width: 200,
+        justifyContent: "center",
+        flexDirection: "column",
+        marginRight: theme.spacing(2),
+        alignItems: "center"
       },
     },
+    btn: {
+      width: 50,
+      marginTop: 16,
+      fontSize: 12
+    }
   }),
 );
 const loginUser = (state: State) => state.user
@@ -44,8 +53,8 @@ export default function AddPost() {
       <TextField id="outlined-basic" label="Outlined" value={post} variant="outlined" onChange={e => {
         setPost(e.target.value)
       }} />
-      <Button variant="contained" color="primary" size="small" onClick={handleSubmit}>
-        Primary
+      <Button className={classes.btn} variant="contained" color="primary" onClick={handleSubmit}>
+        投稿
       </Button>
     </form>
   );
