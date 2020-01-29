@@ -9,7 +9,6 @@ export interface State {
 
 export function initialState(injects?: State): State {
   return {
-    uid: "",
     posts: []
   }
 }

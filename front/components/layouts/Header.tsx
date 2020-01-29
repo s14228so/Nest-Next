@@ -50,7 +50,7 @@ export default function ButtonAppBar() {
                             </Link>
 
                         </Typography>
-                        {!user && (
+                        {!user.uid && (
                             <div>
                                 <IconButton aria-label="display more actions" edge="end" color="inherit">
                                     <Link href="/login">
@@ -64,7 +64,7 @@ export default function ButtonAppBar() {
                                 </IconButton>
                             </div>
                         )}
-                        {user &&
+                        {user.uid &&
                             <IconButton aria-label="display more actions" edge="end" color="inherit">
                                 <Button>LogOut</Button>
                             </IconButton>}

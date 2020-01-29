@@ -35,8 +35,14 @@ const Index: NextPage = () => {
   return <div>
     <Wrapper>
       <Title>TodoList</Title>
-      <AddPost></AddPost>
-      {user.posts && (<PostIndex posts={user.posts}></PostIndex>)}
+      {user.uid && (
+        <div>
+          <AddPost></AddPost>
+          {user.posts && (<PostIndex posts={user.posts}></PostIndex>)}
+        </div>
+
+      )}
+
 
     </Wrapper>
     <style global jsx>{`
