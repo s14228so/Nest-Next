@@ -14,9 +14,9 @@
 
 # production
 /build
-# misc
-.DS_Store
+
 .env*
+*/.DS_Store
 
 # debug
 npm-debug.log*
