@@ -7,6 +7,7 @@ import PostIndex from "../components/PostList"
 import { authCheck } from '../store/sessions/actions';
 import AddPost from "../components/AddPost"
 
+
 const Title = styled.h1`
   color: grey;
   font-size: 24px;

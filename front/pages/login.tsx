@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import { Paper, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Face, Fingerprint } from '@material-ui/icons'
 import { login } from '../store/sessions/actions';
-
 const LoginPage: NextPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
