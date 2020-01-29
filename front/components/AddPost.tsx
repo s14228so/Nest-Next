@@ -44,8 +44,6 @@ export default function AddPost() {
     const newUser = { ...user, posts: [...user.posts, data] }
 
     dispatch(postData(newUser))
-
-    console.log("ok")
   }
 
   return (

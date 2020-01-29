@@ -48,7 +48,10 @@ export class UsersService {
   }
 
   async register(userData: Partial<CreateUserDTO>): Promise<void> {
+    console.log(userData)
     const { user } = await firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
+
+    console.log(user)
     const newUser: Partial<User> = {
       name: userData.name,
       uid: user.uid,

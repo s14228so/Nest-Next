@@ -38,7 +38,7 @@ export class UsersController {
     return user
   }
 
-  @Post('register')
+  @Post()
   @HttpCode(HttpStatus.CREATED)
   async createUser(@Body() createUserDTO: CreateUserDTO) {
     console.log("コタ")

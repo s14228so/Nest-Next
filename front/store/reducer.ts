@@ -5,7 +5,7 @@ import * as Messages from "./messages"
 export function initialState() {
   return {
     user: Sessions.initialState(),
-    error: Messages.initialState()
+    message: Messages.initialState()
   }
 }
 

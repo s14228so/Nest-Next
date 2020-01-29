@@ -9,7 +9,9 @@ export interface MessageState {
 }
 
 export function initialState(injects?: MessageState): MessageState {
-  console.log(injects)
+  if (injects) {
+    console.log(injects)
+  }
   return {
     body: "",
     type: "success"

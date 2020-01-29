@@ -6,6 +6,8 @@ import { auth } from "../../plugins/firebase"
 import { Dispatch, ActionCreator } from 'redux';
 import { ThunkAction } from "redux-thunk";
 
+
+
 export const setUser = (user: User) => {
   return {
     type: SessionActionType.SETUSER,
@@ -69,15 +71,15 @@ export const postData = (user: User) => {
 
 export const signup: ActionCreator<
   ThunkAction<void, typeof SessionActionType, null, PromiseAction>
-> = ({ email, password }) => {
+> = (name, email, password) => {
+
   return (dispatch: Dispatch) => {
-    auth.createUserWithEmailAndPassword(email, password).then(user => {
-      if (user.user) {
-        axios.get(`/v1/users?uid=${user.user.uid}`).then(res => {
-          console.log("これ:", res.data)
-          dispatch(setUser(res.data))
-        })
-      }
+    axios.post("/v1/users", {
+      name, email, password
+    }).then(res => {
+      console.log("これ:", res.data)
+      dispatch(setUser(res.data))
+      router.push("/")
     })
   }
 }

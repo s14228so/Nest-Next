@@ -24,7 +24,6 @@ const Message: React.FC = () => {
   const classes = useStyles();
 
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-    console.log(event)
     if (reason === 'clickaway') {
       return;
     }
@@ -49,12 +48,6 @@ const Message: React.FC = () => {
   })
 
 
-  // return (
-  //   <MessageBox>
-  //     {error && (
-  //       <p>{error.message}</p>)}
-  //   </MessageBox>
-  // )
 
   return (
     <div className={classes.root}>

@@ -3,13 +3,16 @@ import { NextPage } from "next";
 import { useDispatch } from "react-redux"
 
 import { Paper, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Face, Fingerprint } from '@material-ui/icons'
+import { Face, Fingerprint, AlternateEmail } from '@material-ui/icons'
 import { signup } from '../store/sessions/actions';
-
+import { useRouter } from 'next/router'
 const SignUpPage: NextPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
   const dispatch = useDispatch();
+  const router = useRouter()
+
 
   return (
     <Paper style={styles.container}>
@@ -17,11 +20,23 @@ const SignUpPage: NextPage = () => {
         <h2>Sign Up</h2>
         <Grid container spacing={8} alignItems="flex-end">
           <Grid item>
-            <Face />
+            <AlternateEmail />
           </Grid>
           <Grid item md={true} sm={true} xs={true}>
             <TextField id="email" label="Email" value={email} type="email" fullWidth autoFocus required onChange={(e) => {
               setEmail(e.target.value)
+            }} />
+          </Grid>
+        </Grid>
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item>
+
+            <Face />
+
+          </Grid>
+          <Grid item md={true} sm={true} xs={true}>
+            <TextField id="name" label="Name" value={name} type="text" fullWidth autoFocus required onChange={(e) => {
+              setName(e.target.value)
             }} />
           </Grid>
         </Grid>
@@ -49,7 +64,8 @@ const SignUpPage: NextPage = () => {
         </Grid>
         <Grid container justify="center" style={{ marginTop: '10px' }}>
           <Button variant="outlined" color="primary" style={{ textTransform: "none" }} onClick={() => {
-            dispatch(signup(email, password))
+            dispatch(signup(name, email, password))
+            router.push("/")
           }}>SignUp</Button>
         </Grid>
       </div>

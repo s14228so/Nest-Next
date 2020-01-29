@@ -53,12 +53,13 @@ export default function ButtonAppBar() {
                         {!user.uid && (
                             <div>
                                 <IconButton aria-label="display more actions" edge="end" color="inherit">
-                                    <Link href="/login">
+                                    <Link href="/signup" as={"/signup"}>
                                         <a style={{ color: "#000" }}> Sign Up</a>
                                     </Link>
                                 </IconButton>
                                 <IconButton aria-label="display more actions" edge="end" color="inherit">
-                                    <Link href="/signup">
+                                    <Link href="/login" as={"/login"}>
+
                                         <a style={{ color: "#000" }}> Login</a>
                                     </Link>
                                 </IconButton>
